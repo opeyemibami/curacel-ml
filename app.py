@@ -84,14 +84,13 @@ if uploaded_file is not None:
         sel = np.zeros_like(im_resized)
         sel[mask] = im_resized[mask]
         st.image(sel, caption='preprocessed image', use_column_width=False)
-    print(grayy.shape)
     pred_proba = model.predict(np.expand_dims(grayy, 0))
     pred_class = model.predict_classes(np.expand_dims(grayy, 0))
     data = list((pred_proba[0]*100).round(2))
     data.append((100-data[0]).round(2))
     data = [data[0],data[1]]
     label = [str(pred_class[0][0]),str(1 - pred_class[0][0])]
-    print(label)
+    print(data)
     isup_colors = ['lightskyblue','lightcoral']
 
 
